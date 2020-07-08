@@ -15,7 +15,7 @@ class custom_tanh( torch.autograd.Function ):
         return y
 
     @staticmethod
-    def backward(ctx, dL_dy):
+    def backward(ctx, dL_dy):  # dL_dy = dL/dy
         x, = ctx.saved_tensors
         h = x / 4.0
         dy_dx = d_tanh( h )
@@ -41,7 +41,7 @@ if __name__=="__main__":
     # 関数化
     my_func = custom_tanh.apply
     # 描画
-    draw_graph(torch.tanh, my_func)
+    # draw_graph(torch.tanh, my_func)
     # 計算を実行
     y = my_func(X)
     L = torch.sum(y*y)
